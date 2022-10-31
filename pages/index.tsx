@@ -12,7 +12,9 @@ import { fetchExperiences } from "../utils/fetchExperiences";
 import { fetchSkills } from "../utils/fetchSkills";
 import { fetchProjects } from "../utils/fetchProjects";
 import { fetchSocial } from "../utils/fetchSocials";
-import Link from "next/link";
+import { TbMoonStars, TbSun } from "react-icons/tb";
+import { useState } from "react";
+import { set } from "react-hook-form";
 
 type Props = {
   pageInfo: PageInfo;
@@ -23,6 +25,8 @@ type Props = {
 };
 
 const Home = ({ projects, skills, pageInfo, experiences, socials }: Props) => {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
     <div className="snap-y snap-mandatory h-screen overflow-y-scroll scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 bg-[rgb(36,36,36)] text-white z-0">
       <Header socials={socials} />
@@ -57,17 +61,23 @@ const Home = ({ projects, skills, pageInfo, experiences, socials }: Props) => {
         <ContactMe pageInfo={pageInfo} />
       </section>
 
-      <Link href="https://www.youtube.com/watch?v=urgi2iz9P6U&t=2331s">
-        <footer className="sticky bottom-5 w-full cursor-pointer">
-          <div className="flex items-center justify-center">
-            <img
-              className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
-              src="https://i.imgur.com/e2yvD6A.png"
-              alt=""
+      <footer className="sticky bottom-8 w-full">
+        <div className="ml-3">
+          {darkMode ? (
+            <TbMoonStars
+              className="cursor-pointer"
+              size={40}
+              onClick={() => setDarkMode(!darkMode)}
             />
-          </div>
-        </footer>
-      </Link>
+          ) : (
+            <TbSun
+              className="cursor-pointer"
+              size={40}
+              onClick={() => setDarkMode(!darkMode)}
+            />
+          )}
+        </div>
+      </footer>
     </div>
   );
 };

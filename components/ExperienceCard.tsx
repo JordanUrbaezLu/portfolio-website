@@ -9,7 +9,7 @@ type Props = {
 
 function ExperienceCard({ experience }: Props) {
   return (
-    <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden">
+    <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 opacity-100 transition-opacity duration-200 overflow-hidden">
       <motion.img
         initial={{
           y: -100,
@@ -36,10 +36,10 @@ function ExperienceCard({ experience }: Props) {
         </div>
 
         <p className="uppercase py-5 text-gray-300">
-          {new Date(experience.dateStarted).toDateString()} -{" "}
+          {new Date(experience.dateStarted).toDateString().slice(4)} -{" "}
           {experience.isCurrentlyWorkingHere
             ? "Present"
-            : new Date(experience.dateEnded).toDateString()}
+            : new Date(experience.dateEnded).toDateString().slice(4)}
         </p>
 
         <ul className="list-disc space-y-4 ml-5 text-lg">
